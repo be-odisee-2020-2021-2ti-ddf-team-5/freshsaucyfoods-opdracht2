@@ -1,4 +1,4 @@
-package be.odisee.team5.fsfopdracht2;
+package be.odisee.team5.fsfopdracht2.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
