@@ -5,15 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BestellingController {
-    @GetMapping("/")
+    @GetMapping("/createBestelling")
     public String createBestelling(){
+
         return "createBestelling";
     }
 
-    @GetMapping("/")
+    @GetMapping("/bestellingenList")
     public String bestellingenList(){
-        return "bestellingenList";
+        return "bestellingList";
     }
 }
-
-

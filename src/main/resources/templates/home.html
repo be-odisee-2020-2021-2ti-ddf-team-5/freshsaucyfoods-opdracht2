@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"
-            xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>FreshSaucyFoods - Home</title>
 </head>
 <body>
 <h1>Welcome to FreshSaucyFoods</h1>
+<img th:src="@{/images/LogoFreshSaucyFoods.png}">
 <p th:text="${#dates.createNow()}"></p>
+<hr>
+<ul>
+    <li><a th:href="@{/bestellingenList}">Bekijk de lijst van bestellingen</a></li>
+    <li><a th:href="@{/createBestelling}">Maak een nieuwe bestelling aan</a></li>
+</ul>
 </body>
 </html>

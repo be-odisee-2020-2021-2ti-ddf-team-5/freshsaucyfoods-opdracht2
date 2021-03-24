@@ -4,7 +4,14 @@ package be.odisee.team5.fsfopdracht2.domain;
  * @version 1.0
  * @created 09-Mar-2021 3:56:55 PM
  */
-public interface Rol {
-	public String getRol();
-	public void setRol(String rol);
+public class Rol {
+
+	public Rol(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
 }
