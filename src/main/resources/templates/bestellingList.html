@@ -9,5 +9,22 @@
 <h1>Lijst van alle bestellingen</h1>
 <hr>
 <a th:href="@{/}">Terug naar home page</a>
+<table>
+    <thead>
+    <th>Titel:</th>
+    <th>Aantal Liter:</th>
+    <th>Gewenste Lever datum:</th>
+    </thead>
+    <tbody>
+    <div th:if="${bestellingList.size()}!=0" class="table-striped well" >
+        <div th:each="bestelling : ${bestellingList}">
+            <td th:text="${bestelling.getLiterBesteld()}"></td>
+        </div>
+    </div>
+    </tbody>
+</table>
+
+
+
 </body>
 </html>

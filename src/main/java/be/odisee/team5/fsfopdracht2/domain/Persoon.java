@@ -1,5 +1,7 @@
 package be.odisee.team5.fsfopdracht2.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
@@ -8,6 +10,7 @@ import javax.persistence.*;
  * @created 09-Mar-2021 3:56:55 PM
  */
 @Entity
+@Data
 @Table()
 public class Persoon {
 
