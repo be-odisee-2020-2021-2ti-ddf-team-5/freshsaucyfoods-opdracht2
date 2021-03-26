@@ -1,20 +1,17 @@
 package be.odisee.team5.fsfopdracht2.controllers;
 
-import be.odisee.team5.fsfopdracht2.domain.Bestelling;
-import be.odisee.team5.fsfopdracht2.domain.Dossier;
 import be.odisee.team5.fsfopdracht2.formdata.BestellingData;
 import be.odisee.team5.fsfopdracht2.service.FreshSaucyFoodsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Slf4j
 @Controller
 @RequestMapping("/bestelling")
 public class BestellingController {
@@ -22,45 +19,48 @@ public class BestellingController {
     @Autowired
     protected FreshSaucyFoodsService fsfService;
 
-    @GetMapping("/create")
-    public String createBestelling(Model model){
-        BestellingData bestellingData = new BestellingData();
-        model.addAttribute(bestellingData);
+    @GetMapping
+    public String entryCreateForm(Model model) {
+
+        BestellingData bestellingData = fsfService.prepareNewBestellingData();
+        prepareForm(bestellingData, model);
         return "createBestelling";
     }
 
-    @PostMapping("/create")
-    public String processBestellingCreate(BestellingData bestellingData, Errors errors, Model model){
-        String message = "";
-        try{
-            if(errors.hasErrors()){
-                message = "Er werden foute waarden in gegeven";
-                return "createBestelling";
+    /**
+     * Prepares the form with data for projects- and objectives comboboxes
+     */
+    private void prepareForm(BestellingData entryData, Model model) {
+
+        model.addAttribute("objectives",fsfService.getObjectives() );
+        model.addAttribute("entryData", entryData );
+    }
+    /**
+     * Process the form
+     * @param bestellingData the data for the entry to be saved
+     */
+    @PostMapping(params = "submit")
+    public String processEntry(BestellingData bestellingData, Errors errors, Model model) {
+
+        String message="";
+
+        try {
+            // Are there any input validation errors detected by JSR 380 bean validation?
+            if (errors.hasErrors() ) {
+                message = "Correct input errors, please";
+                throw new IllegalArgumentException();
             }
-            else {
+            // Now that the input seems to be OK, let's create a new entry or update/delete an existing entry
+            message = fsfService.processBesteling(bestellingData);
 
-                Bestelling bestelling = new Bestelling();
-                //Persoon klant = new Persoon();
-                Dossier dossier = new Dossier();
+            // Prepare form for new data-entry
+            bestellingData = fsfService.prepareNewBestellingData();
 
-                //klant.setNaam(bestellingData);
-                return "bestellingList";
-            }
-        }catch (Exception e){
-
+        } catch (IllegalArgumentException e) {
+            // Nothing special needs to be done
         }
+        prepareForm(bestellingData, model);
+        model.addAttribute("message", message);
         return "createBestelling";
-    }
-
-    @GetMapping("/List")
-    public String bestellingenList(Model model){
-
-        model.addAttribute(fsfService.getBestellingen());
-        return "bestellingList";
-    }
-
-    @GetMapping("/Inplannen")
-    public String bestellingInplannen(int id){
-        return "bestellingInplannen";
     }
 }

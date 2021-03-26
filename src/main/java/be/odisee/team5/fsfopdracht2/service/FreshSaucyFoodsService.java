@@ -1,12 +1,18 @@
 package be.odisee.team5.fsfopdracht2.service;
 
-import be.odisee.team5.fsfopdracht2.dao.BestellingRepository;
 import be.odisee.team5.fsfopdracht2.domain.Bestelling;
-import org.springframework.beans.factory.annotation.Autowired;
+import be.odisee.team5.fsfopdracht2.formdata.BestellingData;
 
 import java.util.List;
 
 public interface FreshSaucyFoodsService {
+
+    public Object getObjectives();
+
+    public BestellingData prepareNewBestellingData();
+
+    public String processBesteling(BestellingData bestellingData);
+
 
     public List<Bestelling> getBestellingen();
     public void createBestelling();

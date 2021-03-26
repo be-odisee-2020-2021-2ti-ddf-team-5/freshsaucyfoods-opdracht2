@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th = "http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Create Bestelling</title>
+    <title>Bestelling</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<h1>Maak een nieuwe bestelling aan</h1>
-<form method="post" th:action="@{/create}" th:object="${bestellingData}">
+<h1>Welcome to bestelling</h1>
+
+<form method="POST" th:action="@{/bestelling}" >
+
+    <input type="hidden"  />
+
     <div class="form-group">
-        <label>Voornaam:</label><input type="text"/>
+        <label>Titel:&nbsp;</label><input type="text" style="width: 40em" />
     </div>
     <div class="form-group">
-        <label>Achternaam:</label><input type="text"/>
-    </div>
-    <div class="form-group">
-        <label>Bestellingnaam:</label><input type="text"/>
-    </div>
-    <div class="form-group">
-        <label>Aantal liter:</label><input  type="text"/>
-    </div>
-    <div class="form-group">
-        <label>Gewenste Lever datum:</label><input type="date" />
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary btn-md">Submit bestelling</button>
+        <button class="btn btn-primary btn-md" name="submit">Create Bestelling</button>
     </div>
 </form>
-<hr>
-<a th:href="@{/}">Terug naar home page</a>
 </body>
 </html>

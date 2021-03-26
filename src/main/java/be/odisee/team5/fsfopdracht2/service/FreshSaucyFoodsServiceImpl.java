@@ -2,30 +2,39 @@ package be.odisee.team5.fsfopdracht2.service;
 
 import be.odisee.team5.fsfopdracht2.dao.BestellingRepository;
 import be.odisee.team5.fsfopdracht2.domain.Bestelling;
+import be.odisee.team5.fsfopdracht2.formdata.BestellingData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Service("FreshSaucyFoodsService")
+@Slf4j
+@Service
 public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
 
     @Autowired
-    private BestellingRepository bestellingRepository = null;
+    private BestellingRepository bestellingRepository;
+
+    @Override
+    public Object getObjectives() {
+        return null;
+    }
+
+    @Override
+    public BestellingData prepareNewBestellingData() {
+        return null;
+    }
+
+    @Override
+    public String processBesteling(BestellingData bestellingData) {
+        return null;
+    }
+
 
     @Override
     public List<Bestelling> getBestellingen() {
-        ArrayList<Bestelling> list = new ArrayList<Bestelling>();
-        Bestelling b = new Bestelling();
-        b.setLiterBesteld(50);
-        list.add(b);
-        b.setLiterBesteld(100);
-        list.add(b);
-
-        return list;
+        return null;
     }
 
     @Override
