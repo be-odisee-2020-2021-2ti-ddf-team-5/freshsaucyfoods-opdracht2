@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BestellingController {
 
     @Autowired
-    private FreshSaucyFoodsService fsfService;
+    protected FreshSaucyFoodsService fsfService;
 
     @GetMapping("/create")
     public String createBestelling(Model model){

@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("FreshSaucyFoodsService")
 public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
 
     @Autowired
-    private BestellingRepository bestellingRepository;
+    private BestellingRepository bestellingRepository = null;
 
     @Override
     public List<Bestelling> getBestellingen() {
