@@ -10,12 +10,12 @@
 <body>
 <h1>Welcome to bestelling</h1>
 
-<form method="POST" th:action="@{/bestelling}" >
+<form method="POST" th:action="@{/bestelling}"> <!--th:object="${bestellingData}"--> //Moet erbij maar werkt niet
 
-    <input type="hidden"  />
+    <input type="hidden"/> <!--th:field="*{id}"--> //Moet erbij maar werkt niet door bestellingData
 
     <div class="form-group">
-        <label>Titel:&nbsp;</label><input type="text" style="width: 40em" />
+        <label>Titel:&nbsp;</label><input type="text" style="width: 40em" /><!--th:field="*{titel}"--> //Moet erbij maar werkt niet door bestellingData
     </div>
     <div class="form-group">
         <button class="btn btn-primary btn-md" name="submit">Create Bestelling</button>
