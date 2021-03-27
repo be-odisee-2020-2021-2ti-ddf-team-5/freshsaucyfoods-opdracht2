@@ -35,7 +35,6 @@ public class Bestelling {
 //	@Column
 //	public Dossier m_Dossier;
 
-
 	public Bestelling(){
 
 	}
@@ -54,24 +53,30 @@ public class Bestelling {
 
 	}
 
+	//Detail van een bestelling kunnen opvragen
+	public String bestellingDetail() {
+		String bestellingDetail = "Titel Bestelling: " + titel + "\n" + "Aantal liter besteld: " + aantalLiterBesteld + "\n" + "Datum van plaatsen bestelling: " + datumStartproductie + "\n" + "De productie duurt al: " + duurProductie + "\n" + "De status van de bestelling: " +status + "\n" + "Verwachte einddatum: " + voorafAfgesprokenEindDatum;
+		return bestellingDetail;
+	}
+
 	public String getDuurProductie(){
 		return "";
 	}
 
-	public String getEindDate(){
-		return "";
+	public LocalDate getEindDate(){
+		return voorafAfgesprokenEindDatum;
 	}
 
-	public int getId(){
-		return 0;
+	public Long getId(){
+		return Id;
 	}
 
 	public int getLiterBesteld(){
-		return 0;
+		return aantalLiterBesteld;
 	}
 
 	public String getStatus(){
-		return "";
+		return status;
 	}
 
 	public String getVooruitgang(){
