@@ -60,7 +60,7 @@ public class Bestelling {
 	}
 
 	public String getDuurProductie(){
-		return "";
+		return duurProductie;
 	}
 
 	public LocalDate getEindDate(){
@@ -80,7 +80,7 @@ public class Bestelling {
 	}
 
 	public String getVooruitgang(){
-		return "";
+		return vooruitgang;
 	}
 
 	/**
