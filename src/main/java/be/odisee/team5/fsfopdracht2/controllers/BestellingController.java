@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -23,6 +24,7 @@ public class BestellingController {
     public String entryCreateForm(Model model) {
 
         BestellingData bestellingData = fsfService.prepareNewBestellingData();
+        bestellingData = new BestellingData();
         prepareForm(bestellingData, model);
         return "createBestelling";
     }
@@ -30,17 +32,17 @@ public class BestellingController {
     /**
      * Prepares the form with data for projects- and objectives comboboxes
      */
-    private void prepareForm(BestellingData entryData, Model model) {
+    private void prepareForm(BestellingData bestellingData, Model model) {
 
-        model.addAttribute("objectives",fsfService.getObjectives() );
-        model.addAttribute("entryData", entryData );
+        model.addAttribute("bestellingen",fsfService.getBestellingen() );
+        model.addAttribute("bestellingData", bestellingData );
     }
     /**
      * Process the form
      * @param bestellingData the data for the entry to be saved
      */
     @PostMapping(params = "submit")
-    public String processEntry(BestellingData bestellingData, Errors errors, Model model) {
+    public String processBestelling(BestellingData bestellingData, Errors errors, Model model) {
 
         String message="";
 
@@ -62,5 +64,43 @@ public class BestellingController {
         prepareForm(bestellingData, model);
         model.addAttribute("message", message);
         return "createBestelling";
+    }
+
+
+    /**
+     * When delete of an entry is pressed
+     */
+    @PostMapping(params = "delete")
+    public String deleteBestelling(BestellingData bestellingData, Model model){
+        fsfService.deleteBestelling(bestellingData.getId());
+        BestellingData bD = fsfService.prepareNewBestellingData();
+        bestellingData = fsfService.prepareNewBestellingData();
+        prepareForm(bestellingData, model);
+        return "createBestelling";
+    }
+
+    /**
+     * editeren van een bestelling
+     * @param id
+     * @param model
+     * @return
+     */
+
+    @GetMapping("/edit")
+    public String bestellingEditForm(@RequestParam("id") long id, Model model) {
+
+        BestellingData bestellingData = fsfService.prepareEntryDataToEdit(id);
+        prepareForm(bestellingData, model);
+        model.addAttribute("message", "Update or Delete this entry please - or Cancel");
+        return "createBestelling";
+    }
+
+    /**
+     * User doesnt want to edit selected bestelling
+     * @return
+     */
+    @PostMapping(params = "cancel")
+    public String redirectToCreate() {
+        return "redirect:/bestelling";
     }
 }

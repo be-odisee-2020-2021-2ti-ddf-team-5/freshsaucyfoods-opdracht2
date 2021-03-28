@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,22 +26,67 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
 
     @Override
     public BestellingData prepareNewBestellingData() {
-        return null;
+        Bestelling lastBestelling = bestellingRepository.findFirstByOrderByIdDesc();
+        return prepareBestellingData(lastBestelling);
+    }
+
+    private BestellingData prepareBestellingData(Bestelling bestelling){
+        BestellingData bestellingData = new BestellingData();
+        bestellingData.setTitel(bestelling.getTitel());
+        bestellingData.setGewensteLeverdatum(bestelling.getVoorafAfgesprokenEindDatum().toString());
+        bestellingData.setAantalLiter(bestelling.getAantalLiterBesteld());
+        bestellingData.setVooruitgang(bestelling.getVooruitgang());
+        try {
+            bestellingData.setStartProductieDate(bestelling.getDatumStartproductie().toString());
+        }catch (Exception e){
+
+        }
+        bestellingData.setId(bestelling.getId());
+        return bestellingData;
     }
 
     @Override
     public String processBesteling(BestellingData bestellingData) {
-        return null;
+        Bestelling bestelling;
+        if (bestellingData.getId() == 0) {
+            bestelling = new Bestelling();
+            bestelling.setStatus("Aangemaakt");
+            bestelling.setVooruitgang("Aangemaakt");
+        }
+        else {
+            bestelling = bestellingRepository.findById( bestellingData.getId() );
+            bestelling.setVooruitgang(bestellingData.getVooruitgang());
+            bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
+        }
+        bestelling.setStatus(bestellingData.getVooruitgang());
+        bestelling.setAantalLiterBesteld(bestellingData.getAantalLiter());
+        bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
+        bestelling.setTitel(bestellingData.getTitel());
+        bestellingRepository.save(bestelling);
+        return "bestelling:" + bestelling.getTitel();
     }
 
 
     @Override
     public List<Bestelling> getBestellingen() {
-        return null;
+
+        return (List<Bestelling>) bestellingRepository.findAll();
     }
 
     @Override
-    public void createBestelling() {
-
+    public void deleteBestelling(long id) {
+        Bestelling bestelling = bestellingRepository.getById(id);
+        bestellingRepository.delete(bestelling);
     }
+
+    @Override
+    public BestellingData prepareEntryDataToEdit(long id) {
+
+        Bestelling bestelling = bestellingRepository.findById(id);
+        BestellingData bestellingDataData = prepareBestellingData(bestelling);
+        bestellingDataData.setId(id);
+        return bestellingDataData;
+    }
+
+
 }

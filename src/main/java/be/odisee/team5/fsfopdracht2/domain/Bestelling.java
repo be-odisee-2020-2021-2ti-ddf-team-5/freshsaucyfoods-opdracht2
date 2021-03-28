@@ -1,6 +1,8 @@
 package be.odisee.team5.fsfopdracht2.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,13 +15,16 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table()
+
 public class Bestelling {
 
 	@Column
 	private int aantalLiterBesteld;
-	@javax.persistence.Id
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
+	private Long id=0L;
+
 	@Column
 	private LocalDate datumStartproductie;
 	@Column
@@ -32,15 +37,16 @@ public class Bestelling {
 	private String vooruitgang;
 	@Column
 	private String titel;
-//	@Column
-//	public Dossier m_Dossier;
+
+	//@OneToMany
+	//public Dossier m_Dossier;
 
 
-	public Bestelling(){
+	public void finalize() throws Throwable {
 
 	}
 
-	public void finalize() throws Throwable {
+	public Bestelling(){
 
 	}
 
@@ -55,27 +61,28 @@ public class Bestelling {
 	}
 
 	public String getDuurProductie(){
-		return "";
+		return duurProductie;
 	}
 
-	public String getEindDate(){
-		return "";
+	public LocalDate getEindDate(){
+		return voorafAfgesprokenEindDatum;
 	}
 
-	public int getId(){
-		return 0;
+	public long getId(){
+		long idd = id;
+		return id;
 	}
 
 	public int getLiterBesteld(){
-		return 0;
+		return aantalLiterBesteld;
 	}
 
 	public String getStatus(){
-		return "";
+		return status;
 	}
 
 	public String getVooruitgang(){
-		return "";
+		return vooruitgang;
 	}
 
 	/**
@@ -83,7 +90,7 @@ public class Bestelling {
 	 * @param duur
 	 */
 	public void setDuurProducte(String duur){
-
+		 duurProductie = duur;
 	}
 
 	/**
@@ -91,7 +98,7 @@ public class Bestelling {
 	 * @param eindDatum
 	 */
 	public void setEindDatum(LocalDate eindDatum){
-
+		voorafAfgesprokenEindDatum = eindDatum;
 	}
 
 	/**
@@ -99,23 +106,23 @@ public class Bestelling {
 	 * @param literBesteld
 	 */
 	public void setLiterBesteld(int literBesteld){
-
+		aantalLiterBesteld = literBesteld;
 	}
 
 	/**
 	 *
-	 * @param status
+	 * @param s
 	 */
-	public void setStatus(String status){
-
+	public void setStatus(String s){
+		status = s;
 	}
 
 	/**
 	 *
-	 * @param vooruitgang
+	 * @param vooruit
 	 */
-	public int setVooruitgang(String vooruitgang){
-		return 0;
+	public void setVooruitgang(String vooruit){
+		vooruitgang = vooruit;
 	}
 
 }

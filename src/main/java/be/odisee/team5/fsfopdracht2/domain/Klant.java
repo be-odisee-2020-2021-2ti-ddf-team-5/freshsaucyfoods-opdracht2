@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @created 09-Mar-2021 3:56:55 PM
  */
+
 public class Klant extends Rol {
 
 	public Afspraak m_Afspraak;
