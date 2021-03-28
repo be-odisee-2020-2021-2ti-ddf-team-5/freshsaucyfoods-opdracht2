@@ -32,4 +32,9 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
     public void createBestelling() {
 
     }
+
+    @Override
+    public Bestelling getBestellingById(int id) {
+        return null;
+    }
 }

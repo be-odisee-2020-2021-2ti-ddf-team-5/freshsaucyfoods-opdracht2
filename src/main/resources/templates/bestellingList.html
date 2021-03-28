@@ -7,8 +7,6 @@
 </head>
 <body>
 <h1>Lijst van alle bestellingen</h1>
-<hr>
-<a th:href="@{/}">Terug naar home page</a>
 <table>
     <thead>
     <th>Titel:</th>
@@ -19,12 +17,12 @@
     <div th:if="${bestellingList.size()}!=0" class="table-striped well" >
         <div th:each="bestelling : ${bestellingList}">
             <td th:text="${bestelling.getLiterBesteld()}"></td>
+            <td><a th:href="@{/bestelling/InPlannen}">Bekijk de lijst van bestellingen</a></td>
         </div>
     </div>
     </tbody>
 </table>
-
-
-
+<hr>
+<a th:href="@{/}">Terug naar home page</a>
 </body>
 </html>

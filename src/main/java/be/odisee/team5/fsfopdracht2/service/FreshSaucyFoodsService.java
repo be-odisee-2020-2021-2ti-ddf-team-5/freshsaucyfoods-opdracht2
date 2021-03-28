@@ -10,4 +10,5 @@ public interface FreshSaucyFoodsService {
 
     public List<Bestelling> getBestellingen();
     public void createBestelling();
+    public Bestelling getBestellingById(int id);
 }

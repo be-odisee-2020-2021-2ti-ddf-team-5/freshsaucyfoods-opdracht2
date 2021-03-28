@@ -60,7 +60,10 @@ public class BestellingController {
     }
 
     @GetMapping("/Inplannen")
-    public String bestellingInplannen(int id){
+    public String bestellingInplannen(int id, Model model){
+
+
+        model.addAttribute(fsfService.getBestellingById(id));
         return "bestellingInplannen";
     }
 }
