@@ -19,4 +19,6 @@ public interface FreshSaucyFoodsService {
 
     public BestellingData prepareEntryDataToEdit(long id);
 
+    public String processBestellingInplannen(BestellingData bestellingData);
+
 }

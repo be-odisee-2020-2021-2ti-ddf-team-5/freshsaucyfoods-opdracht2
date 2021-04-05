@@ -56,11 +56,11 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
         else {
             bestelling = bestellingRepository.findById( bestellingData.getId() );
             bestelling.setVooruitgang(bestellingData.getVooruitgang());
-            bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
+            bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         }
         bestelling.setStatus(bestellingData.getVooruitgang());
         bestelling.setAantalLiterBesteld(bestellingData.getAantalLiter());
-        bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
+        bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         bestelling.setTitel(bestellingData.getTitel());
         bestellingRepository.save(bestelling);
         return "bestelling:" + bestelling.getTitel();
@@ -86,6 +86,16 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
         BestellingData bestellingDataData = prepareBestellingData(bestelling);
         bestellingDataData.setId(id);
         return bestellingDataData;
+    }
+
+    @Override
+    public String processBestellingInplannen(BestellingData bestellingData) {
+        Bestelling bestelling =  bestellingRepository.findById(bestellingData.getId());
+        bestelling.setStatus("In Gepland");
+        bestelling.setVooruitgang("In Gepland");
+        bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        bestellingRepository.save(bestelling);
+        return "bestelling"+bestelling.getTitel();
     }
 
 
