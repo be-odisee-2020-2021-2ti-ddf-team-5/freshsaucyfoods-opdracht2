@@ -10,16 +10,60 @@
 <body>
 <h1>Welcome to bestelling</h1>
 
-<form method="POST" th:action="@{/bestelling}"> <!--th:object="${bestellingData}"--> //Moet erbij maar werkt niet
-
-    <input type="hidden"/> <!--th:field="*{id}"--> //Moet erbij maar werkt niet door bestellingData
+<form method="POST" th:action="@{/bestelling}" th:object="${bestellingData}">
+    <input type="hidden" th:field="*{id}" />
 
     <div class="form-group">
-        <label>Titel:&nbsp;</label><input type="text" style="width: 40em" /><!--th:field="*{titel}"--> //Moet erbij maar werkt niet door bestellingData
+        <label>Titel:&nbsp;</label><input type="text" style="width: 40em" th:field="*{titel}" />
     </div>
     <div class="form-group">
+        <label>Aantal liter:&nbsp;</label><input type="number" style="width: 40em" th:field="*{aantalLiter}" />
+    </div>
+    <div class="form-group">
+        <label>Gewenste lever datum:&nbsp;</label><input  type="date" style="width: 40em" th:field="*{gewensteLeverdatum}" />
+    </div>
+    <div th:if="${bestellingData.getId()}!=0" class="form-group">
+    <label>Vooruitgang&nbsp;</label><input type="text" style="width: 40em" th:field="*{vooruitgang}" />
+</div>
+    <div th:if="${bestellingData.getId()}!=0" class="form-group">
+        <label>Start productie datum&nbsp;</label><input type="date" style="width: 40em" th:field="*{startProductieDate}" />
+    </div>
+    <div class="form-group"  th:if="${bestellingData.getId()}==0">
         <button class="btn btn-primary btn-md" name="submit">Create Bestelling</button>
     </div>
+    <div th:if="${bestellingData.getId()}!=0" class="form-group">
+        <button class="btn btn-primary btn-md" name="submit">Update bestelling</button>
+        <button class="btn btn-danger btn-md" name="delete">Delete bestelling</button>
+        <button class="btn btn-warning btn-md" name="cancel">Cancel</button>
+    </div>
 </form>
+<div th:if="${bestellingen.size()}!=0" class="table-striped well" >
+    <div th:each="entry: ${bestellingen}" class="row"
+         th:onclick="'window.location.href = \'' + @{/bestelling/edit?id={id} (id=${entry.getId()}) } + '\''"  >
+        <div class="col-md-1 text-right">#</div>
+        <div class="col-md-1 text-left" th:text="${entry.getId()}"></div>
+        <div class="col-md-2 text-left" th:text="${entry.getTitel()}"></div>
+        <div class="col-md-2 text-left" th:text="${entry.getLiterBesteld()}"></div>
+        <div th:if="${entry.getVooruitgang() == 'Klaar'}">
+            <div class="col-md-2 text-left bg-success"  th:text="${entry.getVooruitgang()}"></div>
+        </div>
+        <div th:if="${entry.getVooruitgang() == 'Aangemaakt'}">
+            <div class="col-md-2 text-left bg-info"  th:text="${entry.getVooruitgang()}"></div>
+        </div>
+        <div th:if="${entry.getVooruitgang() == 'Weiger'}">
+            <div class="col-md-2 text-left bg-danger"  th:text="${entry.getVooruitgang()}"></div>
+        </div>
+        <div th:if="${entry.getVooruitgang() == 'In Productie'}">
+            <div class="col-md-2 text-left bg-warning"  th:text="${entry.getVooruitgang()}"></div>
+        </div>
+        <div th:if="${entry.getVooruitgang() != 'In Productie' && entry.getVooruitgang() != 'Weiger' && entry.getVooruitgang() != 'Klaar' && entry.getVooruitgang() != 'Aangemaakt'}">
+            <div class="col-md-2 text-left"  th:text="${entry.getVooruitgang()}"></div>
+        </div>
+        <div class="col-md-2 text-left" th:text="${entry.getVoorafAfgesprokenEindDatum()}"></div>
+        <div class="col-md-2 text-left" th:text="${entry.getDatumStartproductie()}"></div>
+    </div>
+</div>
+<hr>
+<a th:href="@{home.html}">Terug naar home Pagina</a>
 </body>
 </html>

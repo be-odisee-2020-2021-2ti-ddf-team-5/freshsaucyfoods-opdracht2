@@ -1,6 +1,8 @@
 package be.odisee.team5.fsfopdracht2.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,13 +15,16 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table()
+
 public class Bestelling {
 
 	@Column
 	private int aantalLiterBesteld;
-	@javax.persistence.Id
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
+	private Long id=0L;
+
 	@Column
 	private LocalDate datumStartproductie;
 	@Column
@@ -32,16 +37,19 @@ public class Bestelling {
 	private String vooruitgang;
 	@Column
 	private String titel;
-//	@Column
-//	public Dossier m_Dossier;
 
-	public Bestelling(){
+	public Bestelling(){}
 
-	}
+	//@OneToMany
+	//public Dossier m_Dossier;
+
 
 	public void finalize() throws Throwable {
 
+
 	}
+
+
 
 	/**
 	 *
@@ -67,8 +75,9 @@ public class Bestelling {
 		return voorafAfgesprokenEindDatum;
 	}
 
-	public Long getId(){
-		return Id;
+	public long getId(){
+		long idd = id;
+		return id;
 	}
 
 	public int getLiterBesteld(){
@@ -88,7 +97,7 @@ public class Bestelling {
 	 * @param duur
 	 */
 	public void setDuurProducte(String duur){
-
+		 duurProductie = duur;
 	}
 
 	/**
@@ -96,7 +105,7 @@ public class Bestelling {
 	 * @param eindDatum
 	 */
 	public void setEindDatum(LocalDate eindDatum){
-
+		voorafAfgesprokenEindDatum = eindDatum;
 	}
 
 	/**
@@ -104,23 +113,23 @@ public class Bestelling {
 	 * @param literBesteld
 	 */
 	public void setLiterBesteld(int literBesteld){
-
+		aantalLiterBesteld = literBesteld;
 	}
 
 	/**
 	 *
-	 * @param status
+	 * @param s
 	 */
-	public void setStatus(String status){
-
+	public void setStatus(String s){
+		status = s;
 	}
 
 	/**
 	 *
-	 * @param vooruitgang
+	 * @param vooruit
 	 */
-	public int setVooruitgang(String vooruitgang){
-		return 0;
+	public void setVooruitgang(String vooruit){
+		vooruitgang = vooruit;
 	}
 
 }

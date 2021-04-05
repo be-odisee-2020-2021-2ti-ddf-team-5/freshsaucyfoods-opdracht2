@@ -13,7 +13,10 @@ public interface FreshSaucyFoodsService {
 
     public String processBesteling(BestellingData bestellingData);
 
-
     public List<Bestelling> getBestellingen();
-    public void createBestelling();
+
+    public void deleteBestelling(long id);
+
+    public BestellingData prepareEntryDataToEdit(long id);
+
 }

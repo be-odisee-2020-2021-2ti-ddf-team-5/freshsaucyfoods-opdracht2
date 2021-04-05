@@ -9,10 +9,9 @@ public interface BestellingRepository extends CrudRepository<Bestelling, Long> {
     /**
      * Find bestelling by its unique numbre
      */
-     //Bestelling getById(int id);
+     public Bestelling getById(long id);
 
-    /**
-     * get every bestelling that exists
-     */
-     //List<Bestelling> getAll();
+     public Bestelling findFirstByOrderByIdDesc();
+
+     public Bestelling findById(long id);
 }
