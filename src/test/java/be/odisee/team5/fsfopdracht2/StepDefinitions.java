@@ -1,17 +1,12 @@
 package be.odisee.team5.fsfopdracht2;
-import java.time.LocalDate;
-import java.util.List;
 
-import cucumber.api.DataTable;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.*;
-
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -37,11 +32,11 @@ public class StepDefinitions {
     public void Ik_gewensteDatum_ingeef(String datumStartproductie, String fieldName) throws Throwable {
         driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
     }
-    @When("^Ik op de submit-button klik^")
+    @When("^Ik op de submit-button klik$")
     public void i_press_on_the_Submit_button() throws Throwable {
         driver.findElement(By.name("submit")).click();
     }
-    @Then("^Zou ik een lijst moeten zien met \"([^\"]*)\"$")
+    @Then("^Zou ik \"([^\"]*)\" in de tabel zien verschijnen\\.$")
     public void Ik_zou_een_lijst_moeten_zien(String text2bFound) throws Throwable {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
@@ -50,8 +45,5 @@ public class StepDefinitions {
         String bodyText = driver.findElement(By.tagName("body")).getText();
         Assert.assertTrue("Did not find this text: " + text2bFound +"\n",bodyText.contains(text2bFound));
     }
-}
-class LabelData {
-    String label;
-    String data;
+
 }

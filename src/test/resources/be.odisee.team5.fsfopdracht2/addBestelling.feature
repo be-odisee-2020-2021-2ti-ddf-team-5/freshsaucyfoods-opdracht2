@@ -5,7 +5,7 @@ Feature: Add Bestelling
 
   Scenario: Voeg 1 bestelling toe
     Given Ik ben op de pagina waar ik een bestelling kan toevoegen
-    When Ik "bestelling" zet in het Titel-field
+    When Ik "bestelling" zet in het Titel field
     And Ik "10" zet in het aantal-field
     And Ik "01/01/2021" zet in het leverdatum-field
     And Ik op de submit-button klik
