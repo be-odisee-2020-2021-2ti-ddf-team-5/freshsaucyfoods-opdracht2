@@ -24,14 +24,14 @@ public class StepDefinitions {
     public void Ik_Geef_BestellingTitel_ingeef(String enteredText, String fieldName) throws Throwable{
         driver.findElement(By.id(fieldName)).sendKeys(enteredText);
     }
-   // @When("^Ik \"([^\"]*)\" zet in het ([^\"]*)")
-    //public void Ik_AantalLiter_Ingeef(String aantalLiter, String fieldName) throws Throwable {
-      //  driver.findElement(By.id(fieldName)).sendKeys(aantalLiter);
-   // }
-    //@When("^Ik \"([^\"]*)\" zet in heet ([^\"]*)")
-    //public void Ik_gewensteDatum_ingeef(String datumStartproductie, String fieldName) throws Throwable {
-     //   driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
-    //}
+    @When("^Ik \"([^\"]*)\" toevoeg in het ([^\"]*)")
+    public void Ik_AantalLiter_Ingeef(String aantalLiter, String fieldName) throws Throwable {
+      driver.findElement(By.id(fieldName)).sendKeys(aantalLiter);
+    }
+    @When("^Ik \"([^\"]*)\" aanduid in heet ([^\"]*)")
+   public void Ik_gewensteDatum_ingeef(String datumStartproductie, String fieldName) throws Throwable {
+        driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
+    }
     @When("^Ik op de submit-button klik$")
     public void i_press_on_the_Submit_button() throws Throwable {
         driver.findElement(By.name("submit")).click();
