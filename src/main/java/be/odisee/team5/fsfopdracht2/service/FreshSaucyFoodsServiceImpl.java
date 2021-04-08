@@ -56,23 +56,11 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
         else {
             bestelling = bestellingRepository.findById( bestellingData.getId() );
             bestelling.setVooruitgang(bestellingData.getVooruitgang());
-            try {
-                bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
-            }
-            catch (Throwable e){
-                bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            }
-
+            bestelling.setDatumStartproductie(LocalDate.parse(bestellingData.getStartProductieDate(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
         }
         bestelling.setStatus(bestellingData.getVooruitgang());
         bestelling.setAantalLiterBesteld(bestellingData.getAantalLiter());
-        try{
-            bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
-        }
-        catch (Throwable e){
-            bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        }
-
+        bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
         bestelling.setTitel(bestellingData.getTitel());
         bestellingRepository.save(bestelling);
         return "bestelling:" + bestelling.getTitel();
