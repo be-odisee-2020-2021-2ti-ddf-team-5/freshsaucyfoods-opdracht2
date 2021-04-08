@@ -32,6 +32,7 @@ public class StepDefinitions {
     @When("^Ik \"([^\"]*)\" aanduid in het ([^\"]*)")
    public void Ik_gewensteDatum_ingeef(String datumStartproductie, String fieldName) throws Throwable {
         datumStartproductie = datumStartproductie.replace("/","-");
+        driver.findElement(By.id(fieldName)).click();
         driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
     }
     @When("^Ik op de submit-button klik$")
