@@ -7,6 +7,6 @@ Feature: Add Bestelling
     Given Ik ben op de pagina waar ik een bestelling kan toevoegen
     When Ik "bestelling" zet in het titel
     And Ik "10" toevoeg in het aantalLiter
-    And Ik "01/01/2021" aanduid in het gewenstedatum
+    And Ik "01/01/2021" aanduid in het gewensteLeverdatum
     And Ik op de submit-button klik
     Then Zou ik "|  #   |  addBestelling.featurebestellingsnummer | Bestelling | 10 | Aangemaakt | 01/01/2021 " in de tabel zien verschijnen.

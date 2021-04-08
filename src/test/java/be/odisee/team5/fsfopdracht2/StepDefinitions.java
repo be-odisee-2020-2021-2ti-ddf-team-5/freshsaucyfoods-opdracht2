@@ -28,7 +28,8 @@ public class StepDefinitions {
     public void Ik_AantalLiter_Ingeef(String aantalLiter, String fieldName) throws Throwable {
       driver.findElement(By.id(fieldName)).sendKeys(aantalLiter);
     }
-    @When("^Ik \"([^\"]*)\" aanduid in heet ([^\"]*)")
+
+    @When("^Ik \"([^\"]*)\" aanduid in het ([^\"]*)")
    public void Ik_gewensteDatum_ingeef(String datumStartproductie, String fieldName) throws Throwable {
         driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
     }
