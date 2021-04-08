@@ -31,6 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
-src/main/resources/templates/createBestelling.html
-src/test/java/be/odisee/team5/fsfopdracht2/StepDefinitions.java
-src/test/resources/be.odisee.team5.fsfopdracht2/addBestelling.feature
+
