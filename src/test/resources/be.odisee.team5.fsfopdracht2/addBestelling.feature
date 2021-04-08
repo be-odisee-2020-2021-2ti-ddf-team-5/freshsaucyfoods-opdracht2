@@ -9,4 +9,4 @@ Feature: Add Bestelling
     And Ik "10" zet in het aantal-field
     And Ik "01/01/2021" zet in het leverdatum
     And Ik op de submit-button klik
-    Then Zou ik "|  #   |  addBestelling.featurebestellingsnummer | Bestelling | 10 | Aangemaakt | 01/01/2021 " in de tabel zien verschijnen.
+    Then Zou ik "Bestelling" in de tabel zien verschijnen.
