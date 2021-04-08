@@ -40,7 +40,7 @@ public class StepDefinitions {
     public void Ik_zou_een_lijst_moeten_zien(String text2bFound) throws Throwable {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
-                        .textToBePresentInElementLocated(By.className("titeltoegevoegd"), "text2bFound"));
+                        .textToBePresentInElementLocated(By.tagName("body"), "Details van persoon"));
 
         String bodyText = driver.findElement(By.tagName("body")).getText();
         Assert.assertTrue("Did not find this text: " + text2bFound +"\n",bodyText.contains(text2bFound));

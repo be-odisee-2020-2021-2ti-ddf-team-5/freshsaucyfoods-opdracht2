@@ -42,7 +42,7 @@
          th:onclick="'window.location.href = \'' + @{/bestelling/edit?id={id} (id=${entry.getId()}) } + '\''"  >
         <div class="col-md-1 text-right">#</div>
         <div class="col-md-1 text-left" th:text="${entry.getId()}"></div>
-        <div class="col-md-2 text-left titeltoegevoegd" th:text="${entry.getTitel()}"></div>
+        <div class="col-md-2 text-left" th:text="${entry.getTitel()}"></div>
         <div class="col-md-2 text-left" th:text="${entry.getLiterBesteld()}"></div>
         <div th:if="${entry.getVooruitgang() == 'Klaar'}">
             <div class="col-md-2 text-left bg-success"  th:text="${entry.getVooruitgang()}"></div>
