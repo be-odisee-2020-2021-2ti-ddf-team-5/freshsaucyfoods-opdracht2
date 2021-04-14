@@ -38,17 +38,18 @@ public class Bestelling {
 	@Column
 	private String titel;
 
+	public Bestelling(){}
+
 	//@OneToMany
 	//public Dossier m_Dossier;
 
 
 	public void finalize() throws Throwable {
 
-	}
-
-	public Bestelling(){
 
 	}
+
+
 
 	/**
 	 *
@@ -58,6 +59,12 @@ public class Bestelling {
 	 */
 	public void addProefstaaltje(String berschrijving, String titel, Bereidingswijze bereidingswijze){
 
+	}
+
+	//Detail van een bestelling kunnen opvragen
+	public String bestellingDetail() {
+		String bestellingDetail = "Titel Bestelling: " + titel + "\n" + "Aantal liter besteld: " + aantalLiterBesteld + "\n" + "Datum van plaatsen bestelling: " + datumStartproductie + "\n" + "De productie duurt al: " + duurProductie + "\n" + "De status van de bestelling: " +status + "\n" + "Verwachte einddatum: " + voorafAfgesprokenEindDatum;
+		return bestellingDetail;
 	}
 
 	public String getDuurProductie(){
