@@ -70,6 +70,7 @@ public class StepDefinitions {
             datumStartproductie = datumStartproductie.replace("/","-");
             driver.findElement(By.id(fieldName)).click();
             driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
+            driver.findElement(By.)
         }
         @When("^Ik op de submit-button klik$")
         public void i_press_on_the_delete_button() throws Throwable {
