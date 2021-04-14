@@ -6,8 +6,6 @@ Feature: Delete Bestelling
 
   Scenario: delete een bestaande bestelling
     Given Ik ben op de pagina waar ik een bestelling kan verwijderen
-    When Ik "bestelling" zet in het titel
-    And Ik "10" toevoeg in het aantalLiter
-    And Ik "2021/01/01" aanduid in het gewensteLeverdatum
+    When Ik "LeveringGent" druk in titeltoegevoegd
     And Ik op de delete-button klik
-    Then Zou ik "bestelling" in de tabel zien verdwijnen.
+    Then Zou ik "LeveringGent" in de tabel zien verdwijnen.
