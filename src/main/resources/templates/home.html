@@ -2,12 +2,14 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
     <meta charset="UTF-8">
     <title>FreshSaucyFoods - Home</title>
 </head>
 <body>
-<h1>Welcome to FreshSaucyFoods</h1>
-<img th:src="@{/images/LogoFreshSaucyFoods.png}">
+<h1 >Welcome to FreshSaucyFoods</h1>
+<img  th:src="@{/images/LogoFreshSaucyFoods.png}">
 <p th:text="${#dates.createNow()}"></p>
 <hr>
 <ul>

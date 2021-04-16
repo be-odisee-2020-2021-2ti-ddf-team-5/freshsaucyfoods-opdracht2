@@ -108,4 +108,9 @@ private persoonDao persoonDao;
     public Persoon zoekPersoonMetEmailadres(String emailadres){
         return persoonDao.getPersoonByEmailadres(emailadres);
     }
+
+    @Override
+    public String processBestellingInplannen(BestellingData bestellingData) {
+        return null;
+    }
 }

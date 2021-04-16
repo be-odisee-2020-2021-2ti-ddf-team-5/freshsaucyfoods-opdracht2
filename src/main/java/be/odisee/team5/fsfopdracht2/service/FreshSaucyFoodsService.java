@@ -23,4 +23,6 @@ public interface FreshSaucyFoodsService {
     public Persoon zoekPersoonMetId(int id);
 
     public Persoon zoekPersoonMetEmailadres(String username);
+    public String processBestellingInplannen(BestellingData bestellingData);
+
 }
