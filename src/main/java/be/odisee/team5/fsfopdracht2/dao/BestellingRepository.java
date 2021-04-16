@@ -2,9 +2,9 @@ package be.odisee.team5.fsfopdracht2.dao;
 
 import be.odisee.team5.fsfopdracht2.domain.Bestelling;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface BestellingRepository extends CrudRepository<Bestelling, Long> {
     /**
      * Find bestelling by its unique numbre
