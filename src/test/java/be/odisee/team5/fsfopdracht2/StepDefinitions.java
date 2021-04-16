@@ -48,6 +48,40 @@ public class StepDefinitions {
         String bodyText = driver.findElement(By.tagName("body")).getText();
         Assert.assertTrue("Did not find this text: " + text2bFound +"\n",bodyText.contains(text2bFound));
     }
+     //==============================================================================================================
+    @Given("^Ik ben op de pagina waar ik een bestelling kan updaten")
+         public void Ik_ben_op_de_pagina_waar_ik_een_bestelling_kan_updaten() throws Throwable {
+         System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+
+         driver = new FirefoxDriver();
+         driver.navigate().to( "http://localhost:8080/bestelling");
+     }
+     @When("^Ik \"([^\"]*)\" klik in ([^\"]*)$")
+     public void Ik_Geef_BestellingTitel_ingeef_update(String enteredText, String fieldName) throws Throwable {
+         WebElement element = driver.findElement(By.xpath("//*[text() = '" + enteredText + "']"));
+         String elementtext = element.getText();
+         if (elementtext.equals(enteredText)){
+                element.click();
+         }
+      }
+      @When("^Ik \"([^\"]*)\" verander in het ([^\"]*)")
+      public void Ik_AantalLiter_Update(String aantalLiter, String fieldName) throws Throwable {
+         driver.findElement(By.id(fieldName)).sendKeys(aantalLiter);
+      }
+      @When("^Ik op de update-button klik$")
+      public void i_press_on_the_update_button() throws Throwable {
+      driver.findElement(By.name("update")).click();
+      }
+
+      @Then("^Zou ik \"([^\"]*)\" in de tabel zien wijzigen\\.$")
+      public void Ik_zou_een_lijst_moeten_zien_updaten(String text2bFound) throws Throwable {
+            new WebDriverWait(driver, 10)
+                    .until(ExpectedConditions
+                    .textToBePresentInElementLocated(By.className("titelgeupdate"), text2bFound));
+
+            String bodyText = driver.findElement(By.tagName("body")).getText();
+            Assert.assertTrue("Did not find this text: " + text2bFound +"\n",bodyText.contains(text2bFound));
+       }
     //==================================================================================================================
     // bestelling verwijderen
        @Given("^Ik ben op de pagina waar ik een bestelling kan verwijderen")
@@ -80,41 +114,7 @@ public class StepDefinitions {
                 Assert.assertFalse("Did find this text: " + text2bFound +"\n",bodyText.contains(text2bFound));
             }
         }
-       /* //==============================================================================================================
-           @Given("^Ik ben op de pagina waar ik een bestelling kan updaten")
-            public void Ik_ben_op_de_pagina_waar_ik_een_bestelling_kan_updaten() throws Throwable {
-                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
 
-                driver = new FirefoxDriver();
-                driver.navigate().to( "http://localhost:8080/bestelling");
-            }
-            @When("^Ik \"([^\"]*)\" aanpas in het ([^\"]*)$")
-            public void Ik_Geef_BestellingTitel_ingeef_updaten(String enteredText, String fieldName) throws Throwable{
-                driver.findElement(By.id(fieldName)).sendKeys(enteredText);
-            }
-            @When("^Ik \"([^\"]*)\" update in het ([^\"]*)")
-            public void Ik_AantalLiter_Ingeef_updaten(String aantalLiter, String fieldName) throws Throwable {
-              driver.findElement(By.id(fieldName)).sendKeys(aantalLiter);
-            }
 
-            @When("^Ik \"([^\"]*)\" verander in het ([^\"]*)")
-           public void Ik_gewensteDatum_ingeef_updaten(String datumStartproductie, String fieldName) throws Throwable {
-                datumStartproductie = datumStartproductie.replace("/","-");
-                driver.findElement(By.id(fieldName)).click();
-                driver.findElement(By.id(fieldName)).sendKeys(datumStartproductie);
-            }
-            @When("^Ik op de update-button klik$")
-            public void i_press_on_the_update_button() throws Throwable {
-                driver.findElement(By.name("update")).click();
-            }
-            @Then("^Zou ik \"([^\"]*)\" in de tabel zien wijzigen\\.$")
-            public void Ik_zou_een_lijst_moeten_zien_updaten(String text2bFound) throws Throwable {
-                new WebDriverWait(driver, 10)
-                        .until(ExpectedConditions
-                                .textToBePresentInElementLocated(By.className("titelgeupdate"), text2bFound));
-
-                String bodyText = driver.findElement(By.tagName("body")).getText();
-                Assert.assertTrue("Did not find this text: " + text2bFound +"\n",bodyText.contains(text2bFound));
-            }*/
 
 }
