@@ -1,7 +1,9 @@
 package be.odisee.team5.fsfopdracht2.service;
 
 import be.odisee.team5.fsfopdracht2.dao.BestellingRepository;
+import be.odisee.team5.fsfopdracht2.dao.persoonDao;
 import be.odisee.team5.fsfopdracht2.domain.Bestelling;
+import be.odisee.team5.fsfopdracht2.domain.Persoon;
 import be.odisee.team5.fsfopdracht2.formdata.BestellingData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
 public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
-
+private persoonDao persoonDao;
     @Autowired
     private BestellingRepository bestellingRepository;
 
@@ -100,5 +101,11 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
         return bestellingDataData;
     }
 
+    public Persoon zoekPersoonMetId(int id){
+        return persoonDao.getPersoonById(id);
+    }
 
+    public Persoon zoekPersoonMetEmailadres(String emailadres){
+        return persoonDao.getPersoonByEmailadres(emailadres);
+    }
 }

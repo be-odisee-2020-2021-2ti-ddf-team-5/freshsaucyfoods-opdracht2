@@ -21,13 +21,16 @@ public class Persoon {
 	@Column
 	private String emailadress;
 	@Column
+	private String voornaam;
+	@Column
 	private String familienaam;
+	@Column
+	private String Usernaam;
 	@Column
 	private String password;
 	@Column
 	private int status;
-	@Column
-	private String voornaam;
+
 
 	public Persoon(){
 
