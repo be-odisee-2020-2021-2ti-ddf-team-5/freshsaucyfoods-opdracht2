@@ -46,7 +46,7 @@
 <div th:if="${bestellingen.size()}!=0" class="table-striped well" >
         <div class="row">
             <div class="col-md-1 text-uppercase text-primary text-left font-weight-bold">#</div>
-            <div class="col-md-3 text-uppercase text-primary  text-left">Naam</div>
+            <div class="col-md-2 text-uppercase text-primary  text-left">Naam</div>
             <div class="col-md-2 text-uppercase text-primary  text-left">Aantal liter</div>
             <div class="col-md-2 text-left text-primary text-uppercase ">Status</div>
             <div class="col-md-2 text-left text-primary text-uppercase ">Gewenste leverdatum</div>
@@ -55,7 +55,6 @@
     <div th:each="entry: ${bestellingen}" class="row"
          th:onclick="'window.location.href = \'' + @{/bestelling/edit?id={id} (id=${entry.getId()}) } + '\''"  >
         <div class="col-md-1 text-left" th:text="${entry.getId()}"></div>
-        <div class="col-md-3 text-left" th:text="${entry.getTitel()}"></div>
         <div class="col-md-2 text-left titeltoegevoegd" th:text="${entry.getTitel()}"></div>
         <div class="col-md-2 text-left" th:text="${entry.getLiterBesteld()}"></div>
         <div th:if="${entry.getVooruitgang() == 'Klaar'}">

@@ -40,8 +40,8 @@ public class Bestelling {
 
 	public Bestelling(){}
 
-	//@OneToMany
-	//public Dossier m_Dossier;
+	@ManyToOne
+	public Persoon klant;
 
 
 	public void finalize() throws Throwable {

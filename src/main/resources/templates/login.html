@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FreshSaucyFoods - Login</title>
+</head>
+<body>
+<h1>Welcome to FreshSaucyFoods</h1>
+<img  th:src="@{/images/LogoFreshSaucyFoods.png}">
+<p th:text="${#dates.createNow()}"></p>
+<hr>
+<div class="section">
+    <form th:action="@{/login}" method="POST">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <fieldset>
+            <div class="field">
+                <div class="label"><label for="username">E-mailadres:</label></div>
+                <div class="output">
+                    <input type="text" name="username" id="username"  />
+                </div>
+            </div>
+            <div class="field">
+                <div class="label"><label for="password">Paswoord:</label></div>
+                <div class="output">
+                    <input type="password" name="password" id="password" />
+                </div>
+            </div>
+            <div class="form-buttons">
+                <div class="button">
+                    <input type="submit" value="Login"/>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+
+</html>

@@ -3,6 +3,7 @@ package be.odisee.team5.fsfopdracht2.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author bramv
@@ -11,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Data
-@Table()
+@Table(name = "PERSONEN")
 public class Persoon {
 
 	@Id
@@ -28,6 +29,8 @@ public class Persoon {
 	private int status;
 	@Column
 	private String voornaam;
+	@OneToMany
+	public List<Bestelling> bestellingen;
 
 	public Persoon(){
 
