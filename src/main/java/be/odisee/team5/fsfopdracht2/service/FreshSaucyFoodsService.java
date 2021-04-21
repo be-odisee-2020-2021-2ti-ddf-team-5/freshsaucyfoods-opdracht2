@@ -21,4 +21,6 @@ public interface FreshSaucyFoodsService {
 
     public String processBestellingInplannen(BestellingData bestellingData);
 
+    public String getAuthenticatedFullname();
+
 }

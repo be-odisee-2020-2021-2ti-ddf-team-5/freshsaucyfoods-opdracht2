@@ -3,12 +3,14 @@
       xmlns:th = "http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Bestelling</title>
+    <title>FreshSaucyFoods - Bestellingenw</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<h1>Welcome to bestelling</h1>
+<h1>Welcome to FreshSaucyFoods <span th:text="${username}"> username </span></h1>
+
+<h4>Bestellingen</h4>
 
 <form method="POST" th:action="@{/bestelling}" th:object="${bestellingData}">
     <input type="hidden" th:field="*{id}" />
@@ -77,6 +79,7 @@
     </div>
 </div>
 <hr>
+<form method="POST" th:action="@{/logout}" style="float: left"><button class="btn btn-danger btn-md logout" name="logout"value="Logout">Logout</button></form> <br/>
 <a th:href="@{../}">Terug naar home Pagina</a>
 </body>
 </html>

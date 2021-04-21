@@ -33,9 +33,19 @@ public class FSFApplicationInitDB implements CommandLineRunner {
         bestellingRepository.save(b);
 
         Persoon p = new Persoon();
+        p.setRole("ROLE_USER");
         p.setNaam("Jef");
+        p.setFamilienaam("Lokers");
         p.setPassword("12345");
-        p.setEmailadress("jef@hotmail.com");
+        p.setEmailadress("jef.lokers@hotmail.com");
         personRepository.save(p);
+
+        Persoon p2 = new Persoon();
+        p2.setRole("ROLE_ADMIN");
+        p2.setNaam("Tom");
+        p2.setFamilienaam("Berens");
+        p2.setPassword("1");
+        p2.setEmailadress("tom.berens@hotmail.com");
+        personRepository.save(p2);
     }
 }
