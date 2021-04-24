@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
+public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService  {
 
     @Autowired
     private BestellingRepository bestellingRepository;
@@ -39,8 +39,8 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
     private BestellingData prepareBestellingData(Bestelling bestelling){
         BestellingData bestellingData = new BestellingData();
         bestellingData.setTitel(bestelling.getTitel());
-        bestellingData.setGewensteLeverdatum(bestelling.getVoorafAfgesprokenEindDatum().toString());
-        bestellingData.setAantalLiter(bestelling.getAantalLiterBesteld());
+        bestellingData.setLeverdatum(bestelling.getEindDate().toString());
+        bestellingData.setLiterBesteld(bestelling.getLiterBesteld());
         bestellingData.setVooruitgang(bestelling.getVooruitgang());
         try {
             bestellingData.setStartProductieDate(bestelling.getDatumStartproductie().toString());
@@ -71,12 +71,12 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
 
         }
         bestelling.setStatus(bestellingData.getVooruitgang());
-        bestelling.setAantalLiterBesteld(bestellingData.getAantalLiter());
+        bestelling.setLiterBesteld(bestellingData.getAantalLiteretLiterBesteld());
         try{
-            bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
+            bestelling.setEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-dd-MM")));
         }
         catch (Throwable e){
-            bestelling.setVoorafAfgesprokenEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            bestelling.setEindDatum(LocalDate.parse(bestellingData.getGewensteLeverdatum(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         }
         bestelling.setTitel(bestellingData.getTitel());
         bestellingRepository.save(bestelling);
@@ -132,7 +132,13 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
     public String getAuthenticatedFullname() {
 
         Persoon theUser = findAuthenticatedPersoon();
-        return theUser.getVoornaam() +' '+ theUser.getFamilienaam();
+        return theUser.getNaam() +' '+ theUser.getFamilienaam();
+    }
+
+    @Override
+    public Persoon zoekPersoonMetEmailadres(String username) {
+        Persoon persoon = personRepository.findPersoonByEmailadress(username);
+        return persoon;
     }
 
 
