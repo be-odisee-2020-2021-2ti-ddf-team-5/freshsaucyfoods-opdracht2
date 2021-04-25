@@ -132,4 +132,8 @@ public class Bestelling {
 		vooruitgang = vooruit;
 	}
 
+
+	public void setTitel(String eerste_bestelling) {
+		titel = eerste_bestelling;
+	}
 }

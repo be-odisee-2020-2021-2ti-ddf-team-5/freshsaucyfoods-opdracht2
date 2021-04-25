@@ -77,6 +77,11 @@ public class Persoon implements UserDetails {
 	}
 
 	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
 	public String getUsername() {
 		return emailadress;
 	}
@@ -99,5 +104,21 @@ public class Persoon implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+    public void setRole(String role_user) {
+		role = role_user;
+    }
+
+	public void setFamilienaam(String achternaam) {
+		familienaam = achternaam;
+	}
+
+	public void setPassword(String _password) {
+		password = _password;
+	}
+
+	public void setEmailadress(String _emailadres) {
+		emailadress = _emailadres;
 	}
 }
