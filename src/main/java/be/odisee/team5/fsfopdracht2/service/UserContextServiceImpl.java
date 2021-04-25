@@ -16,7 +16,6 @@ public class UserContextServiceImpl implements FreshSaucyFoodsServiceImpl.UserCo
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = principal.getUsername();
         System.out.println("DEBUG: Username uit Principal is " + username);
-       Persoon thePersoon = freshSaucyFoodsService.zoekPersoonMetEmailadres(username);
-        return thePersoon;
+        Persoon thePersoon = freshSaucyFoodsService.
     }
 }
