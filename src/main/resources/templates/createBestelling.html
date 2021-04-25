@@ -3,12 +3,14 @@
       xmlns:th = "http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Bestelling</title>
+    <title>FreshSaucyFoods - Bestellingenw</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<h1>Welcome to bestelling</h1>
+<h1>Welcome to FreshSaucyFoods <span th:text="${username}"> username </span></h1>
+
+<h4>Bestellingen</h4>
 
 <form method="POST" th:action="@{/bestelling}" th:object="${bestellingData}">
     <input type="hidden" th:field="*{id}" />
@@ -46,7 +48,7 @@
 <div th:if="${bestellingen.size()}!=0" class="table-striped well" >
         <div class="row">
             <div class="col-md-1 text-uppercase text-primary text-left font-weight-bold">#</div>
-            <div class="col-md-3 text-uppercase text-primary  text-left">Naam</div>
+            <div class="col-md-2 text-uppercase text-primary  text-left">Naam</div>
             <div class="col-md-2 text-uppercase text-primary  text-left">Aantal liter</div>
             <div class="col-md-2 text-left text-primary text-uppercase ">Status</div>
             <div class="col-md-2 text-left text-primary text-uppercase ">Gewenste leverdatum</div>
@@ -55,7 +57,6 @@
     <div th:each="entry: ${bestellingen}" class="row"
          th:onclick="'window.location.href = \'' + @{/bestelling/edit?id={id} (id=${entry.getId()}) } + '\''"  >
         <div class="col-md-1 text-left" th:text="${entry.getId()}"></div>
-        <div class="col-md-3 text-left" th:text="${entry.getTitel()}"></div>
         <div class="col-md-2 text-left titeltoegevoegd" th:text="${entry.getTitel()}"></div>
         <div class="col-md-2 text-left" th:text="${entry.getLiterBesteld()}"></div>
         <div th:if="${entry.getVooruitgang() == 'Klaar'}">
@@ -78,6 +79,7 @@
     </div>
 </div>
 <hr>
+<form method="POST" th:action="@{/logout}" style="float: left"><button class="btn btn-danger btn-md logout" name="logout"value="Logout">Logout</button></form> <br/>
 <a th:href="@{../}">Terug naar home Pagina</a>
 </body>
 </html>

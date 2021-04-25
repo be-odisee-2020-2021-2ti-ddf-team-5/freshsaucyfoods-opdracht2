@@ -37,6 +37,7 @@ public class BestellingController {
      */
     private void prepareForm(BestellingData bestellingData, Model model) {
 
+        model.addAttribute("username", fsfService.getAuthenticatedFullname());
         model.addAttribute("bestellingen",fsfService.getBestellingen() );
         model.addAttribute("bestellingData", bestellingData );
     }

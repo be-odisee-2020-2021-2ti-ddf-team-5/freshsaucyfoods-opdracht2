@@ -2,6 +2,9 @@ package be.odisee.team5.fsfopdracht2.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.OneToMany;
+import java.util.List;
+
 /**
  * @author bramv
  * @version 1.0
@@ -11,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Klant extends Rol {
 
 	public Afspraak m_Afspraak;
-	public Dossier m_Dossier;
+
 	public Bestelling m_Bestelling;
 	public Melding m_Melding;
 
