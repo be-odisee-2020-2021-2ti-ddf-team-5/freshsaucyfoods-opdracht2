@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -136,7 +137,4 @@ public class FreshSaucyFoodsServiceImpl implements FreshSaucyFoodsService {
     }
 
 
-    public static interface UserContextService {
-        public Persoon getAuthenticatedPersoon();
-    }
 }

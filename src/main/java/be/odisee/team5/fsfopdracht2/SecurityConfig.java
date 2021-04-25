@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -29,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
 
         http.authorizeRequests()
                 .antMatchers("/favicon.ico").permitAll()
@@ -44,8 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/bestelling",true)
                 .permitAll()
                 .and()
-                .httpBasic()
-                .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/byebye")
@@ -54,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();                                  // NEEDED FOR H2 CONSOLE
         http.headers().frameOptions().disable();
     }
+
 
     @SuppressWarnings("deprecation")
     @Bean
