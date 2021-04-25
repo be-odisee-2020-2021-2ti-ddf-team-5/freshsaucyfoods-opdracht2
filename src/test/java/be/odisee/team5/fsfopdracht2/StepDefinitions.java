@@ -16,8 +16,11 @@ public class StepDefinitions {
     @Given("^Ik ben op de pagina waar ik een bestelling kan toevoegen")
     public void Ik_ben_op_de_pagina_waar_ik_een_bestelling_kan_toevoegen() throws Throwable {
         System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-
         driver = new FirefoxDriver();
+        driver.navigate().to( "http://localhost:8080/login");
+        driver.findElement(By.id("username")).sendKeys("tom.berens@hotmail.com");
+        driver.findElement(By.id("password")).sendKeys("1");
+        driver.findElement(By.id("inlogKnop")).click();
         driver.navigate().to( "http://localhost:8080/bestelling");
     }
     @When("^Ik \"([^\"]*)\" zet in het ([^\"]*)$")
@@ -54,7 +57,11 @@ public class StepDefinitions {
          System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
 
          driver = new FirefoxDriver();
-         driver.navigate().to( "http://localhost:8080/bestelling");
+        driver.navigate().to( "http://localhost:8080/login");
+        driver.findElement(By.id("username")).sendKeys("tom.berens@hotmail.com");
+        driver.findElement(By.id("password")).sendKeys("1");
+        driver.findElement(By.id("inlogKnop")).click();
+        driver.navigate().to( "http://localhost:8080/bestelling");
      }
      @When("^Ik \"([^\"]*)\" klik in ([^\"]*)$")
      public void Ik_Geef_BestellingTitel_ingeef_update(String enteredText, String fieldName) throws Throwable {
@@ -89,7 +96,11 @@ public class StepDefinitions {
             System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
 
             driver = new FirefoxDriver();
-            driver.navigate().to( "http://localhost:8080/bestelling");
+           driver.navigate().to( "http://localhost:8080/login");
+           driver.findElement(By.id("username")).sendKeys("tom.berens@hotmail.com");
+           driver.findElement(By.id("password")).sendKeys("1");
+           driver.findElement(By.id("inlogKnop")).click();
+           driver.navigate().to( "http://localhost:8080/bestelling");
         }
         @When("^Ik \"([^\"]*)\" druk in ([^\"]*)$")
         public void Ik_Geef_BestellingTitel_ingeef_delete(String enteredText, String fieldName) throws Throwable {
