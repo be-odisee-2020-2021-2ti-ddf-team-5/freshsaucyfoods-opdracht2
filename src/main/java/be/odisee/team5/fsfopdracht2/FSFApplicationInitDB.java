@@ -26,10 +26,10 @@ public class FSFApplicationInitDB implements CommandLineRunner {
         //eventuele standaard data
         Bestelling b = new Bestelling();
         b.setTitel("Eerste bestelling");
-        b.setAantalLiterBesteld(10);
+        b.setLiterBesteld(10);
         b.setDatumStartproductie(LocalDate.now());
         b.setVooruitgang("In Productie");
-        b.setVoorafAfgesprokenEindDatum(LocalDate.now().plusMonths(1));
+        b.setEindDatum(LocalDate.now().plusMonths(1));
         bestellingRepository.save(b);
 
         Persoon p = new Persoon();

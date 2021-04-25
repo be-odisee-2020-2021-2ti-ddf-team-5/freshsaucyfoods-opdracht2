@@ -1,6 +1,7 @@
 package be.odisee.team5.fsfopdracht2.service;
 
 import be.odisee.team5.fsfopdracht2.domain.Bestelling;
+import be.odisee.team5.fsfopdracht2.domain.Persoon;
 import be.odisee.team5.fsfopdracht2.formdata.BestellingData;
 
 import java.util.List;
@@ -23,4 +24,5 @@ public interface FreshSaucyFoodsService {
 
     public String getAuthenticatedFullname();
 
+    Persoon zoekPersoonMetEmailadres(String username);
 }
