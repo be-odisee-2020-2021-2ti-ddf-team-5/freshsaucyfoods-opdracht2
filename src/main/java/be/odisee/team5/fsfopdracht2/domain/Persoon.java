@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "PERSONEN")
-public class Persoon implements Serializable, UserDetails {
+public class Persoon implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +29,6 @@ public class Persoon implements Serializable, UserDetails {
 	@Column
 	private String familienaam;
 	@Column
-	//@Size(min=2, message = "minimum 5 letters")
 	private String password;
 	@Column
 	private int status;
@@ -61,14 +59,6 @@ public class Persoon implements Serializable, UserDetails {
 		this.voornaam = voornaam;
 	}
 
-	public String getFamilienaam() {
-		return familienaam;
-	}
-
-	public void setFamilienaam(String familienaam) {
-		this.familienaam = familienaam;
-	}
-
 	public double getSaldo() {
 		return status;
 	}
@@ -84,11 +74,6 @@ public class Persoon implements Serializable, UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority(role));
-	}
-
-	@Override
-	public String getPassword() {
-		return null;
 	}
 
 	@Override
@@ -114,17 +99,5 @@ public class Persoon implements Serializable, UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}
-
-	public void setRole(String role_user) {
-		role = role_user;
-	}
-
-	public void setPassword(String s) {
-		password = s;
-	}
-
-	public void setEmailadress(String email) {
-		emailadress = email;
 	}
 }

@@ -3,7 +3,6 @@ package be.odisee.team5.fsfopdracht2.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.apache.bcel.generic.ARETURN;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -68,10 +67,6 @@ public class Bestelling {
 		return bestellingDetail;
 	}
 
-	public String getTitel( ) { return titel; }
-
-	public void setTitel(String _title ) { titel = _title;}
-
 	public String getDuurProductie(){
 		return duurProductie;
 	}
@@ -113,10 +108,6 @@ public class Bestelling {
 		voorafAfgesprokenEindDatum = eindDatum;
 	}
 
-	public void setDatumStartproductie(LocalDate today){
-		datumStartproductie = today;
-	}
-
 	/**
 	 *
 	 * @param literBesteld
@@ -141,8 +132,4 @@ public class Bestelling {
 		vooruitgang = vooruit;
 	}
 
-
-	public Object getDatumStartproductie() {
-		return datumStartproductie;
-	}
 }
