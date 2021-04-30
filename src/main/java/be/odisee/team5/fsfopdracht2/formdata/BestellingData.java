@@ -1,12 +1,13 @@
 package be.odisee.team5.fsfopdracht2.formdata;
 
+import be.odisee.team5.fsfopdracht2.domain.Bestelling;
 import lombok.Data;
 
 import javax.validation.constraints.*;
 
 
 @Data
-public class BestellingData {
+public class BestellingData extends Bestelling {
    private long id=0;
    @DecimalMin(value = "9",message = "Gelieve het aantal liter dat je wilt bestellen mee te geven, minimaal 10 liter bestellen")
    private int aantalLiter=0;

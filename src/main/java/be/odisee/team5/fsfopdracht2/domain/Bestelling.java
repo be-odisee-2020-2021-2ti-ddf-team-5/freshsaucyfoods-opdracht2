@@ -1,10 +1,11 @@
 package be.odisee.team5.fsfopdracht2.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -15,8 +16,8 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table()
-
-public class Bestelling {
+@XmlRootElement(name="Bestelling")
+public class Bestelling implements Serializable {
 
 	@Column
 	private int aantalLiterBesteld;
@@ -62,32 +63,38 @@ public class Bestelling {
 	}
 
 	//Detail van een bestelling kunnen opvragen
+	@XmlElement(name = "bestellingDetail")
 	public String bestellingDetail() {
 		String bestellingDetail = "Titel Bestelling: " + titel + "\n" + "Aantal liter besteld: " + aantalLiterBesteld + "\n" + "Datum van plaatsen bestelling: " + datumStartproductie + "\n" + "De productie duurt al: " + duurProductie + "\n" + "De status van de bestelling: " +status + "\n" + "Verwachte einddatum: " + voorafAfgesprokenEindDatum;
 		return bestellingDetail;
 	}
 
+	@XmlElement(name = "duurProductie")
 	public String getDuurProductie(){
 		return duurProductie;
 	}
-
+	@XmlElement(name = "voorafAfgesprokenEindDatum")
 	public LocalDate getEindDate(){
 		return voorafAfgesprokenEindDatum;
 	}
 
+	@XmlElement(name = "id")
 	public long getId(){
-		long idd = id;
 		return id;
 	}
-
+	@XmlElement(name = "titel")
+	public  String getTitel(){return titel;}
+	@XmlElement(name = "aantalLiterBesteld")
 	public int getLiterBesteld(){
 		return aantalLiterBesteld;
 	}
 
+	@XmlElement(name = "status")
 	public String getStatus(){
 		return status;
 	}
 
+	@XmlElement(name = "vooruitgang")
 	public String getVooruitgang(){
 		return vooruitgang;
 	}
@@ -120,6 +127,7 @@ public class Bestelling {
 	 *
 	 * @param s
 	 */
+
 	public void setStatus(String s){
 		status = s;
 	}
