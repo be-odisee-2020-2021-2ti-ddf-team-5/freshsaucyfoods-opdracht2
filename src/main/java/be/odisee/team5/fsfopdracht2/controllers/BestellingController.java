@@ -4,6 +4,7 @@ import be.odisee.team5.fsfopdracht2.formdata.BestellingData;
 import be.odisee.team5.fsfopdracht2.service.FreshSaucyFoodsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 @Slf4j
 @Controller
 @RequestMapping("/bestelling")
+//@PostAuthorize("#model.get('rol').persoon.emailadres == authentication.principal.username")
 public class BestellingController {
 
     @Autowired

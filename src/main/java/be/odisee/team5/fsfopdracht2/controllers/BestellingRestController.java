@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:8888", maxAge = 3600, allowCredentials = "true")
 public class BestellingRestController {
     @Autowired
     protected FreshSaucyFoodsService freshSaucyFoodsService=null; // ready for dependency injection
