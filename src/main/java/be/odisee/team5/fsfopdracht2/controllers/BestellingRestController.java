@@ -35,7 +35,7 @@ public class BestellingRestController {
 
     // REST PUT ... breng de toestand van bestaande resource van de client naar de server
 
-    @RequestMapping(value={"/bestelling/{id}"},method=RequestMethod.PUT)
+    @RequestMapping(value={"/bestelling/{id}"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void putPersoon(@PathVariable("id") Integer id, @RequestBody Bestelling bestelling){
 
@@ -53,7 +53,7 @@ public class BestellingRestController {
 
     // REST POST ... hiermee wordt een resource gecreeerd
 
-    @RequestMapping(value={"/bestelling"},method=RequestMethod.POST)
+    @RequestMapping(value={"/createBestelling"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody Bestelling createPersoon(@RequestBody BestellingData bestelling, HttpServletResponse response)
             throws BindException {
