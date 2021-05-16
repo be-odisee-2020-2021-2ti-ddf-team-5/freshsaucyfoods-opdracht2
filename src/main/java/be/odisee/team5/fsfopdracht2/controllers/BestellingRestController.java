@@ -12,20 +12,21 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8888", maxAge = 3600, allowCredentials = "true")
+
 @Controller
+@CrossOrigin(origins = "http://localhost:8888", maxAge = 3600, allowCredentials = "true")
 public class BestellingRestController {
     @Autowired
     protected FreshSaucyFoodsService freshSaucyFoodsService=null; // ready for dependency injection
 
-    @RequestMapping("/bestelling.html")
+    @RequestMapping("bestelling.html")
     public String bestelling(){
         return "bestelling";
     }
 
     // REST GET ... breng de toestand van bestaande resources van de server naar de client (lijst van objecten)
 
-    @RequestMapping(value={"/bestellingen"},method=RequestMethod.GET)
+    @RequestMapping(path={"bestellingen"},method=RequestMethod.GET)
     public @ResponseBody
     List<Bestelling> getBestellingen(){
 
@@ -35,7 +36,7 @@ public class BestellingRestController {
 
     // REST PUT ... breng de toestand van bestaande resource van de client naar de server
 
-    @RequestMapping(value={"/bestelling/{id}"},method=RequestMethod.POST)
+    @RequestMapping(path={"deleteBestelling/{id}"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void putPersoon(@PathVariable("id") Integer id, @RequestBody Bestelling bestelling){
 
@@ -44,7 +45,7 @@ public class BestellingRestController {
 
     // REST DELETE ... hiermee wordt een resource verwijderd
 
-    @RequestMapping(value={"/bestelling/{id}"},method=RequestMethod.DELETE)
+    @RequestMapping(path={"bestelling/{id}"},method=RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePersoon(@PathVariable("id") Integer id){
 
@@ -53,12 +54,10 @@ public class BestellingRestController {
 
     // REST POST ... hiermee wordt een resource gecreeerd
 
-    @RequestMapping(value={"/createBestelling"},method=RequestMethod.POST)
+    @RequestMapping(path={"createBestelling"})
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody Bestelling createPersoon(@RequestBody BestellingData bestelling, HttpServletResponse response)
-            throws BindException {
-
-
+    public @ResponseBody Bestelling createPersoon(@RequestBody BestellingData bestelling)
+    {
         freshSaucyFoodsService.processBesteling(bestelling);
         return bestelling;
     }
