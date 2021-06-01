@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, proxyTargetClass = true)
+
+@EnableGlobalMethodSecurity(securedEnabled = false, prePostEnabled = true, proxyTargetClass = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
